@@ -1,0 +1,196 @@
+It looks like you’re running into issues because you’re using PowerShell on Windows, where the `./` syntax for running executables doesn’t apply. Here’s how you can correctly build and run your C++ project on Windows using PowerShell or Command Prompt.
+
+### Step-by-Step Guide for Running the Project on Windows
+
+#### 1. **Navigate to the Project Directory**
+
+Open PowerShell or Command Prompt and navigate to the directory where your `Makefile` and source files are located:
+
+```powershell
+cd C:\Users\ASUS\OneDrive\Desktop\Library Management System
+```
+
+#### 2. **Install `g++` Compiler**
+
+Make sure you have a C++ compiler installed. You can use **MinGW** or **MSVC**. Here’s how to set up MinGW:
+
+- **Download MinGW**: [MinGW-w64](https://sourceforge.net/projects/mingw-w64/) and install it.
+- **Add MinGW to PATH**:
+  - Find the installation directory, usually `C:\MinGW\bin`.
+  - Add this directory to the PATH environment variable:
+    - **Windows 10/11**:
+      - Open **Settings** → **System** → **About** → **Advanced system settings**.
+      - Click on **Environment Variables**.
+      - Find the **Path** variable in the System variables section and click **Edit**.
+      - Add the path to `MinGW\bin` to the list.
+    - Open a new Command Prompt or PowerShell window after adding to PATH.
+
+#### 3. **Compile the Project**
+
+Use the `make` command to compile the project:
+
+```powershell
+make
+```
+
+If you see errors during this step, make sure that your `Makefile` is correctly written and that all source files are in the right place.
+
+#### 4. **Run the Program**
+
+To run the compiled executable in PowerShell, use the following command:
+
+```powershell
+.\library_management_system.exe
+```
+
+In Command Prompt, you can use:
+
+```cmd
+library_management_system.exe
+```
+
+#### 5. **Clean the Project**
+
+To remove object files and the executable, run:
+
+```powershell
+make clean
+```
+
+#### 6. **Using `make` Directly**
+
+If you encounter issues with `make`, you can manually compile and link the files. Here’s how to compile using `g++` directly:
+
+```powershell
+g++ -std=c++17 -Wall -Iinclude -o library_management_system src/Book.cpp src/User.cpp src/Library.cpp src/main.cpp
+```
+
+To run the executable:
+
+```powershell
+.\library_management_system.exe
+```
+
+### Common Errors and Fixes
+
+#### **1. `make` Not Found**
+
+If `make` is not recognized, you might need to install `make` for Windows. **MinGW** typically includes it, but you can also get it from [GnuWin32](https://sourceforge.net/projects/gnuwin32/files/) or use [MSYS2](https://www.msys2.org/).
+
+#### **2. Path Issues**
+
+Ensure that you have `g++` and `make` in your PATH. You might need to restart your PowerShell or Command Prompt after adding directories to PATH.
+
+#### **3. Compilation Errors**
+
+- **Check Header Files**: Ensure that all header files are included correctly in `Book.h`, `User.h`, `Library.h`, and that the `#include` directives are properly set in your `.cpp` files.
+- **Check for Missing Includes**: Make sure to include necessary headers in your source files.
+
+### Example Session for PowerShell
+
+Here’s what a typical session might look like:
+
+```powershell
+# Navigate to the project directory
+cd C:\Users\ASUS\OneDrive\Desktop\Library Management System
+
+# Compile the project
+make
+
+# Run the compiled executable
+.\library_management_system.exe
+```
+
+### Example Commands for Command Prompt
+
+```cmd
+# Navigate to the project directory
+cd C:\Users\ASUS\OneDrive\Desktop\Library Management System
+
+# Compile the project
+make
+
+# Run the compiled executable
+library_management_system.exe
+```
+
+### Additional Tips
+
+- **Ensure Proper File Extensions**: On Windows, `.exe` is used for executables. `make` will produce `library_management_system.exe`, but you can also rename it if needed.
+- **Command Line Arguments**: If you want to pass arguments to the executable, you can do so like this:
+
+  ```powershell
+  .\library_management_system.exe
+  ```
+
+If you encounter specific errors or need further assistance, please provide the exact error messages, and I can help troubleshoot them!
+
+### Sample `README.md` with Build Instructions
+
+Here’s a sample `README.md` file with detailed instructions for building and running the project:
+
+```markdown
+# Library Management System
+
+## Description
+
+A simple library management system implemented in C++. The system allows users to manage books and users, including adding, deleting, updating books, borrowing and returning books, and displaying books and users.
+
+## Features
+
+- Add, delete, and update books
+- Search for books by ISBN
+- Register new users
+- Borrow and return books
+- Display all books and users
+
+## Prerequisites
+
+- **MinGW** or **MSVC** installed for the C++ compiler.
+- **make** utility available.
+
+## Installation
+
+### For MinGW:
+
+1. **Download MinGW**: [MinGW-w64](https://sourceforge.net/projects/mingw-w64/) and install it.
+2. **Add MinGW to PATH**:
+   - Open **Settings** → **System** → **About** → **Advanced system settings**.
+   - Click on **Environment Variables**.
+   - Find the **Path** variable in the System variables section and click **Edit**.
+   - Add the path to `MinGW\bin` to the list.
+   - Restart Command Prompt or PowerShell.
+
+### For MSVC:
+
+1. **Download and Install Visual Studio**: [Visual Studio](https://visualstudio.microsoft.com/).
+2. **Open Developer Command Prompt** for Visual Studio from the Start Menu.
+
+## Building the Project
+
+To compile the project, run:
+
+```bash
+make
+```
+
+## Running the Program
+
+To run the compiled program, use:
+
+```bash
+.\library_management_system.exe
+```
+
+## Cleaning Up
+
+To remove the compiled files, run:
+
+```bash
+make clean
+```
+
+## Authors
+
+- S O U M Y D E E P     C H A T T E R J E E 
+
